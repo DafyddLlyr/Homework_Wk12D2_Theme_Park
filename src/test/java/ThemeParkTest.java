@@ -77,4 +77,13 @@ public class ThemeParkTest {
         assertEquals(0, dodgems.getVisitCount());
         assertEquals(0, visitor.getVisitedAttractions().size());
     }
+
+    @Test
+    public void canGetAllReviews() {
+        themePark.addStall(candyflossStall);
+        themePark.addAttraction(dodgems);
+        assertEquals(2, themePark.getAllReviews().size());
+        assertEquals(new Integer(5), themePark.getAllReviews().get("Bumper Cars"));
+        assertEquals(new Integer(8), themePark.getAllReviews().get("Candy Land"));
+    }
 }
