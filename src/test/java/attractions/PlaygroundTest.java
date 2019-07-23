@@ -7,7 +7,6 @@ import people.Visitor;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 
 public class PlaygroundTest {
     Playground playground;
