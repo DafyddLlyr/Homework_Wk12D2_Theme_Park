@@ -1,12 +1,9 @@
 import attractions.Attraction;
-import attractions.Dodgems;
 import behaviours.IReviewed;
-import org.w3c.dom.Attr;
-import stalls.CandyflossStall;
+import people.Visitor;
 import stalls.Stall;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ThemePark {
 
@@ -39,5 +36,12 @@ public class ThemePark {
         for(Attraction attraction : this.attractions) { allReviewed.add((IReviewed) attraction); }
         for(Stall stall : this.stalls) { allReviewed.add((IReviewed) stall); }
         return allReviewed;
+    }
+
+    public void visit(Visitor visitor, Attraction attraction) {
+        if(this.attractions.contains(attraction)) {
+            attraction.incrementVisitCount();
+            visitor.addAttraction(attraction);
+        }
     }
 }

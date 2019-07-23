@@ -1,61 +1,80 @@
 import attractions.Dodgems;
-import attractions.Park;
-import attractions.Playground;
-import attractions.RollerCoaster;
 import org.junit.Before;
 import org.junit.Test;
+import people.Visitor;
 import stalls.CandyflossStall;
-import stalls.IceCreamStall;
 import stalls.ParkingSpot;
-import stalls.TobaccoStall;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ThemeParkTest {
 
-    private ThemePark newPark;
+    private ThemePark themePark;
     private Dodgems dodgems;
     private  CandyflossStall candyflossStall;
+    private Visitor visitor;
 
     @Before
     public void setup() {
-        newPark = new ThemePark();
+        themePark = new ThemePark();
         dodgems = new Dodgems("Bumper Cars", 5);
         candyflossStall = new CandyflossStall("Candy Land", "Harry Belafonte", ParkingSpot.A1, 8);
+        visitor = new Visitor(20, 180, 100);
     }
 
     @Test
     public void canAccessAttractions() {
-        assertEquals(0, newPark.getAttractions().size());
+        assertEquals(0, themePark.getAttractions().size());
     }
 
     @Test
     public void canGetStalls() {
-        assertEquals(0, newPark.getStalls().size());
+        assertEquals(0, themePark.getStalls().size());
     }
 
     @Test
     public void canAddAttraction() {
-        newPark.addAttraction(dodgems);
-        assertEquals(1, newPark.getAttractions().size());
-        assertTrue(newPark.getAttractions().contains(dodgems));
+        themePark.addAttraction(dodgems);
+        assertEquals(1, themePark.getAttractions().size());
+        assertTrue(themePark.getAttractions().contains(dodgems));
     }
 
     @Test
     public void canAddStalls() {
-        newPark.addStall(candyflossStall);
-        assertEquals(1, newPark.getStalls().size());
-        assertTrue(newPark.getStalls().contains(candyflossStall));
+        themePark.addStall(candyflossStall);
+        assertEquals(1, themePark.getStalls().size());
+        assertTrue(themePark.getStalls().contains(candyflossStall));
     }
 
     @Test
     public void canGetAllReviewed() {
-        newPark.addStall(candyflossStall);
-        newPark.addAttraction(dodgems);
-        assertEquals(2, newPark.getAllReviewed().size());
-        assertTrue(newPark.getAllReviewed().contains(candyflossStall));
-        assertTrue(newPark.getAllReviewed().contains(dodgems));
+        themePark.addStall(candyflossStall);
+        themePark.addAttraction(dodgems);
+        assertEquals(2, themePark.getAllReviewed().size());
+        assertTrue(themePark.getAllReviewed().contains(candyflossStall));
+        assertTrue(themePark.getAllReviewed().contains(dodgems));
+    }
+
+    @Test
+    public void visitMethodIncrementsVisitCount() {
+        themePark.addAttraction(dodgems);
+        themePark.visit(visitor, dodgems);
+        assertEquals(1, dodgems.getVisitCount());
+    }
+
+    @Test
+    public void visitMethodAddsAttractionToVisitor() {
+        themePark.addAttraction(dodgems);
+        themePark.visit(visitor, dodgems);
+        assertEquals(1, visitor.getVisitedAttractions().size());
+        assertTrue(visitor.getVisitedAttractions().contains(dodgems));
+    }
+
+    @Test
+    public void cannotVisitAttractionNotInPark() {
+        themePark.visit(visitor, dodgems);
+        assertEquals(0, dodgems.getVisitCount());
+        assertEquals(0, visitor.getVisitedAttractions().size());
     }
 }
