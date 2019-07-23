@@ -47,4 +47,27 @@ public class RollercoasterTest {
         Visitor visitor = new Visitor(13, 146, 100);
         assertTrue(rollerCoaster.isAllowed(visitor));
     }
+
+    @Test
+    public void hasDefaultPrice() {
+        assertEquals(8.40, rollerCoaster.defaultPrice(), 0.00);
+    }
+
+    @Test
+    public void chargesLessThan200cmPeopleDefault() {
+        Visitor visitor = new Visitor(20, 180, 100);
+        assertEquals(8.40, rollerCoaster.priceFor(visitor), 0.00);
+    }
+
+    @Test
+    public void charges200cmPeopleDefault() {
+        Visitor visitor = new Visitor(10, 200, 100);
+        assertEquals(8.40, rollerCoaster.priceFor(visitor), 0.00);
+    }
+
+    @Test
+    public void charges200cmPlusPeopleMore() {
+        Visitor visitor = new Visitor(10, 201, 100);
+        assertEquals(16.80, rollerCoaster.priceFor(visitor), 0.00);
+    }
 }

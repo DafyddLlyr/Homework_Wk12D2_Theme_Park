@@ -1,6 +1,6 @@
 package stalls;
 
-import attractions.Park;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class CandyflossStallTest {
 
     @Before
     public void setUp() throws Exception {
-        candyflossStall = new CandyflossStall("Candy Land", "Harry Belafonte", ParkingSpot.A1);
+        candyflossStall = new CandyflossStall("Candy Land", "Harry Belafonte", ParkingSpot.A1, 8);
     }
 
     @Test
@@ -28,5 +28,10 @@ public class CandyflossStallTest {
     @Test
     public void hasParkingSpot(){
         assertEquals(ParkingSpot.A1, candyflossStall.getParkingSpot());
+    }
+
+    @Test
+    public void canGetRating() {
+        assertEquals(8, candyflossStall.getRating());
     }
 }
