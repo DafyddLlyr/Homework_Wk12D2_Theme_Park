@@ -5,6 +5,7 @@ import people.Visitor;
 import stalls.Stall;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class ThemePark {
@@ -35,8 +36,8 @@ public class ThemePark {
 
     public ArrayList<IReviewed> getAllReviewed() {
         ArrayList<IReviewed> allReviewed = new ArrayList<>();
-        for(Attraction attraction : this.attractions) { allReviewed.add((IReviewed) attraction); }
-        for(Stall stall : this.stalls) { allReviewed.add((IReviewed) stall); }
+        for(Attraction attraction : this.attractions) { allReviewed.add(attraction); }
+        for(Stall stall : this.stalls) { allReviewed.add(stall); }
         return allReviewed;
     }
 

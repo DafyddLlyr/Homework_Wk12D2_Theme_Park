@@ -1,11 +1,10 @@
 package attractions;
 
-import behaviours.IReviewed;
 import behaviours.ISecurity;
 import behaviours.ITicketed;
 import people.Visitor;
 
-public class RollerCoaster extends Attraction implements ISecurity, IReviewed, ITicketed {
+public class RollerCoaster extends Attraction implements ISecurity, ITicketed {
 
     private double defaultPrice;
 
